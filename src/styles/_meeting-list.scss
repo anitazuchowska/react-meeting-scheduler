@@ -1,0 +1,54 @@
+.meeting-list-container {
+    justify-content: center;
+    flex-direction: column;
+    .list-group {
+        &-item {
+            position: relative;
+            display: inline-block;
+            &.time {
+                margin-right: auto;
+            }
+            &-title {
+                position: relative;
+                display: flex;
+                span {
+                    margin-right: auto;
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 21px;
+                    right: 45px;
+                    width: 18px;
+                    height: 11px;
+                    background: url('/reminder-arrow.png');
+                    background-size: 100% 100%;
+                    transition: transform 300ms;
+                }
+            }
+            &-content {
+                max-height: 0;
+                opacity: 0;
+                visibility: hidden;
+                overflow: hidden;
+                backface-visibility: hidden;
+                transition-property: max-height, opacity, visibility, margin;
+                transition-duration: 300ms;
+                transition-timing-function: ease-out;
+            }
+        }
+        &-item.open {
+            .list-group-item-title {
+                &::after {
+                    transform: scaleY(-1);
+                }
+            }
+            .list-group-item-content {
+                opacity: 1;
+                visibility: visible;
+                transition-timing-function: ease-in;
+                max-height: 500px;
+            }
+        }
+    }
+}
